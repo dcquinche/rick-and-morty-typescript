@@ -1,0 +1,38 @@
+.locations {
+  margin: 4em 3em 4em 3em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.locations__title {
+  text-align: center;
+}
+
+.locations__listCards {
+  margin-top: 3em;
+  display: flex;
+  gap: 70px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.locations__filter {
+  margin-top: 2em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.locations__input {
+  border-radius: 5px;
+  border: 2px solid;
+}
+
+@media (min-width: 768px) {
+  .locations__filter {
+    flex-direction: row;
+  }
+}

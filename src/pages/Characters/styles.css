@@ -1,0 +1,58 @@
+.characters {
+  margin: 4em 3em 4em 3em;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.characters__title {
+  text-align: center;
+}
+
+.characters__listCards {
+  margin-top: 3em;
+  display: flex;
+  gap: 70px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.characters__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  text-align: left;
+  margin-top: 2em;
+}
+
+.characters__titleFilter {
+  margin-top: 0.7em;
+}
+
+.characters__filter, .characters__button {
+  padding: 0.8em;
+  border-radius: 10px;
+  border: 0;
+  background-color: cornflowerblue;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.characters__filter:focus {
+  background-color: bisque;
+  color: cornflowerblue;
+}
+
+.characters__button:hover {
+  background-color: bisque;
+  color: cornflowerblue;
+}
+
+@media (min-width: 768px) {
+  .characters__filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

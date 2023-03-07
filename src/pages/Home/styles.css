@@ -1,0 +1,13 @@
+.home {
+  text-align: center;
+  margin: 4em;
+}
+
+.home__title {
+  font-size: 100px;
+}
+
+.home__description {
+  font-size: 40px;
+  margin-top: 1em;
+}

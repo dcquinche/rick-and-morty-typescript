@@ -1,0 +1,23 @@
+.favoriteCard {
+  justify-content: center;
+  text-align: center;
+  border-radius: solid 30px;
+  width: 250px;
+  text-decoration: none;
+  position: relative;
+}
+
+.favoriteCard__image {
+  height: 250px;
+  width: 250px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.favoriteCard:hover {
+  filter: opacity(0.6) drop-shadow(0 0 0 red);
+}
+
+.favoriteCard__name {
+  color:cornflowerblue;
+}
+
