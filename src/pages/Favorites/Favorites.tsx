@@ -1,9 +1,9 @@
 import './styles.css';
-import { useEffect, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import FavoriteCard from '../../components/FavoriteCard/FavoriteCard';
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites') as string));
 
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem('favorites') as string));
@@ -16,7 +16,7 @@ const Favorites = () => {
         favorites ? (
           <section className="favorites__listCards">
             {
-              favorites.map((character) => (
+              favorites.map((character: { name: string; image: string; id: Key }) => (
                 <FavoriteCard
                   name={character.name}
                   image={character.image}

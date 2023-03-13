@@ -1,20 +1,23 @@
 import './styles.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { getAllEpisodes } from '../../features/episodes';
 import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 
 interface RootState {
   episodes: {
-    episodes: [{
-      id: number;
-      name: string;
-      episode: string;
-      air_date: string;
-      species: string;
-      gender: string;
-    }]
+    episodes: EpisodesState[];
   }
+}
+
+interface EpisodesState {
+  id: number;
+  name: string;
+  episode: string;
+  air_date: string;
+  species: string;
+  gender: string;
 }
 
 interface event {
@@ -27,7 +30,7 @@ const Episodes = () => {
   const { episodes } = useSelector((state: RootState) => state.episodes);
   const [results, setResults] = useState(episodes);
   const [search, setSearch] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
     dispatch(getAllEpisodes());
@@ -46,7 +49,7 @@ const Episodes = () => {
       <h1 className="episodes__title">List of Episodes</h1>
       <section className="episodes__filter">
         <p className="episodes__filterByName"><strong>Filter by Name:</strong> </p>
-        <input className="episodes__input" value={search} type="text" name="name" size="40" onChange={handleChange} />
+        <input className="episodes__input" value={search} type="text" name="name" onChange={handleChange} />
       </section>
       <section className="episodes__listCards">
         {

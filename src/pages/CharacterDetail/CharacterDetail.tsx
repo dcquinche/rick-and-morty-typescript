@@ -2,6 +2,7 @@ import './styles.css';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { getCharacterById } from '../../features/character';
 import CharacterCardDetail from '../../components/CharacterCardDetail/CharacterCardDetail';
 
@@ -26,7 +27,7 @@ interface RootState {
 
 const CharacterDetail = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const { character } = useSelector((state: RootState) => state.character);
 
   useEffect(() => {

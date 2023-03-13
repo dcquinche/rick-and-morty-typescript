@@ -1,55 +1,53 @@
 import './styles.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { getAllCharacters } from '../../features/characters';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 
 interface RootState {
   characters: {
-    characters: [{
-      id: number;
-      name: string;
-      image: string;
-      status: string;
-      species: string;
-      gender: string;
-    }]
+    characters: CharactersState[];
   }
+}
+
+interface CharactersState {
+  id: number;
+  name: string;
+  image: string;
+  status: string;
+  species: string;
+  gender: string;
 }
 
 const Characters = () => {
   const { characters } = useSelector((state: RootState) => state.characters);
   const [results, setResults] = useState(characters);
-  const [status, setStatus] = useState('');
-  const [species, setSpecies] = useState('');
-  const [gender, setGender] = useState('');
-  const dispatch = useDispatch();
+  const [status, setStatus] = useState('Status');
+  const [species, setSpecies] = useState('Species');
+  const [gender, setGender] = useState('Gender');
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
     dispatch(getAllCharacters());
   }, []);
 
   useEffect(() => {
-    document.querySelector('#dropdownStatus').value = 'Status';
-    document.querySelector('#dropdownSpecies').value = 'Species';
-    document.querySelector('#dropdownGender').value = 'Gender';
-  }, [status, species, gender]);
-
-  useEffect(() => {
-    setResults(!status ? characters: Array<Object> : characters.filter((character) => character.status === status));
+    setResults(!status ? characters : characters.filter((character: CharactersState) => character.status === status));
   }, [status]);
 
   useEffect(() => {
-    setResults(!species ? characters : characters.filter((character) => character.species === species));
+    setResults(!species ? characters : characters.filter((character: CharactersState) => character.species === species));
   }, [species]);
 
   useEffect(() => {
-    setResults(!gender ? characters : characters.filter((character) => character.gender === gender));
+    setResults(!gender ? characters : characters.filter((character: CharactersState) => character.gender === gender));
   }, [gender]);
 
   const handleClickStatus = () => {
-    const select = document.querySelector('#dropdownStatus');
-    const option = select.value;
+    const select: HTMLSelectElement | null = document.querySelector('#dropdownStatus');
+    const option = select?.value;
+
     if (option === 'Alive') {
       setStatus('Alive');
     }
@@ -62,8 +60,8 @@ const Characters = () => {
   };
 
   const handleClickSpecies = () => {
-    const select = document.querySelector('#dropdownSpecies');
-    const option = select.value;
+    const select: HTMLSelectElement | null = document.querySelector('#dropdownSpecies');
+    const option = select?.value;
     if (option === 'Human') {
       setSpecies('Human');
     }
@@ -73,8 +71,8 @@ const Characters = () => {
   };
 
   const handleClickGender = () => {
-    const select = document.querySelector('#dropdownGender');
-    const option = select.value;
+    const select: HTMLSelectElement | null = document.querySelector('#dropdownGender');
+    const option = select?.value;
     if (option === 'Female') {
       setGender('Female');
     }

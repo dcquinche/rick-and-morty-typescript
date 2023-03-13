@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as Element | DocumentFragment);
 root.render(
   <Auth0Provider
     domain="coffeecoders-mintic.us.auth0.com"

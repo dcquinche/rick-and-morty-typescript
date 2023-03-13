@@ -1,18 +1,21 @@
 import './styles.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { getAllLoctations } from '../../features/locations';
 import LocationCard from '../../components/LocationCard/LocationCard';
 
 interface RootState {
   locations: {
-    locations: [{
-      name: string;
-      type: string;
-      dimension: string;
-      id: number;
-    }]
+    locations: LocationsState[];
   }
+}
+
+interface LocationsState {
+  name: string;
+  type: string;
+  dimension: string;
+  id: number;
 }
 
 interface event {
@@ -25,7 +28,7 @@ const Locations = () => {
   const { locations } = useSelector((state: RootState) => state.locations);
   const [results, setResults] = useState(locations);
   const [search, setSearch] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
     dispatch(getAllLoctations());
@@ -44,7 +47,7 @@ const Locations = () => {
       <h1 className="locations__title">List of Locations</h1>
       <section className="locations__filter">
         <p className="locations__filterByName"><strong>Filter by Name:</strong> </p>
-        <input className="locations__input" value={search} type="text" name="name" size="40" onChange={handleChange} />
+        <input className="locations__input" value={search} type="text" name="name" onChange={handleChange} />
       </section>
       <section className="locations__listCards">
         {

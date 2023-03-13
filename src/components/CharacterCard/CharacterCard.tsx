@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { getCharacterById } from '../../features/character';
@@ -16,7 +17,7 @@ interface character {
 const CharacterCard = (props: character) => {
   const { isAuthenticated } = useAuth0();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const handleClickCharacter = async () => {
     navigate(`/characters/${props.id}`);

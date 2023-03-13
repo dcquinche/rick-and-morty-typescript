@@ -1,12 +1,13 @@
 import './styles.css';
 import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import { getAllCharacters } from '../../features/characters';
 import { getAllEpisodes } from '../../features/episodes';
 import { getAllLoctations } from '../../features/locations';
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   useEffect(() => {
     dispatch(getAllCharacters());
