@@ -1,12 +1,7 @@
 import './styles.css';
-import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from '@reduxjs/toolkit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { getCharacterById } from '../../features/character';
 
 interface character {
   name: string;
@@ -16,16 +11,6 @@ interface character {
 
 const CharacterCard = (props: character) => {
   const { isAuthenticated } = useAuth0();
-  const navigate = useNavigate();
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-
-  const handleClickCharacter = async () => {
-    navigate(`/characters/${props.id}`);
-  };
-
-  useEffect(() => {
-    dispatch(getCharacterById(props.id));
-  }, [props.id]);
 
   const handleClickFavorite = () => {
     const favoritesArr = JSON.parse(localStorage.getItem('favorites') as string) || [];
@@ -47,7 +32,6 @@ const CharacterCard = (props: character) => {
         )
       }
       <h4 className="characterCard__name">{props.name}</h4>
-      <button className="characterCard__button" type="submit" onClick={handleClickCharacter}>Go to Detail</button>
     </div>
   );
 };
