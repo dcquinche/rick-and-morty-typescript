@@ -31,10 +31,10 @@ const NavBar = () => {
           <div className="navbar__profile">
             <img className="navbar__logButton" alt="profile" src={user?.picture as string} />
             <FontAwesomeIcon className="navbar__logButton" icon={faStar} title="Favorites" onClick={handleClickFavorites} />
-            <FontAwesomeIcon className="navbar__logButton" icon={faRightFromBracket} title="Log Out" onClick={()=>logout}/>
+            <FontAwesomeIcon className="navbar__logButton" icon={faRightFromBracket} title="Log Out" onClick={() => logout()}/>
           </div>
         ) : (
-          <FontAwesomeIcon className="navbar__logButton" icon={faRightToBracket} title="Log In" onClick={()=>loginWithRedirect} />
+          <FontAwesomeIcon className="navbar__logButton" icon={faRightToBracket} title="Log In" onClick={() => loginWithRedirect()} />
         )}
       </section>
       <section className="navbar__pages">
